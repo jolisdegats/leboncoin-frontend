@@ -1,8 +1,8 @@
 import React from "react";
 
-const SearchDiv = ({ visible }) => {
+const SearchDiv = ({ searchVisible }) => {
   return (
-    <div className={visible}>
+    <div className={searchVisible}>
       <div className="backWaveTop"></div>
       <div className="backWaveBottom"></div>
       <div className="searchSortDiv">

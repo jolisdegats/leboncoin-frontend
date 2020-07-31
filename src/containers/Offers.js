@@ -2,25 +2,44 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { creationTime } from "../functions/creationTime";
+var numeral = require("numeral");
 
-const Offers = ({ setVisible }) => {
+// load a locale
+numeral.register("locale", "fr", {
+  delimiters: {
+    thousands: " ",
+    decimal: ",",
+  },
+  abbreviations: {
+    thousand: "k",
+    million: "m",
+    billion: "b",
+    trillion: "t",
+  },
+  ordinal: function (number) {
+    return number === 1 ? "er" : "ème";
+  },
+  currency: {
+    symbol: "€",
+  },
+});
+
+// switch between locales
+numeral.locale("fr");
+
+const Offers = ({ setSearchVisible, apiUrl }) => {
   let myData = [];
   let newArr = [];
   const [totalPages, setTotalPages] = useState(1);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
-  let urlToRequest = "https://leboncoin-api.herokuapp.com/offer/with-count";
+  let urlToRequest = `${apiUrl}/offer/with-count`;
   const limit = 5;
   const skip = (page - 1) * limit;
 
   const fetchData = async () => {
-    const response = await axios(
-      urlToRequest
-      //   "https://leboncoin-api.herokuapp.com/offer/with-count"
-      // Mon backend
-      //   "https://leboncoin-api-js.herokuapp.com/offer/with-count"
-    );
+    const response = await axios.get(urlToRequest);
 
     myData = response.data.offers;
     const totalLength = response.data.count;
@@ -30,6 +49,7 @@ const Offers = ({ setVisible }) => {
   };
 
   useEffect(() => {
+    setSearchVisible("enabled");
     fetchData();
     // eslint-disable-next-line
   }, []);
@@ -46,8 +66,8 @@ const Offers = ({ setVisible }) => {
         {data.slice(skip, skip + limit).map((item, id) => {
           return (
             <Link
-              to={"/offer/" + item._id}
-              onClick={() => setVisible("disabled")}
+              to={`/offer/${item._id}`}
+              onClick={() => setSearchVisible("disabled")}
               key={id}
             >
               <div className="item">
@@ -57,7 +77,9 @@ const Offers = ({ setVisible }) => {
                 <div className="itemInfos">
                   <div>
                     <h2>{item.title}</h2>
-                    <p className="itemPrice">{item.price}</p>
+                    <p className="itemPrice">
+                      {numeral(item.price).format("0,0 $")}
+                    </p>
                     <p></p>
                   </div>
                   <p>{creationTime(item.created)}</p>
@@ -68,6 +90,11 @@ const Offers = ({ setVisible }) => {
         })}
       </div>
       <div className="pagination">
+        <div className={"arrows " + (page === 1 && "linkDisabled")}>
+          <Link to="/" onClick={() => setPage(page - 1)}>
+            &laquo;
+          </Link>
+        </div>
         {newArr.map((item, index) => {
           return (
             <div className="pageNumber" key={index}>
@@ -77,14 +104,12 @@ const Offers = ({ setVisible }) => {
             </div>
           );
         })}
-      </div>
-      {/* {[...Array(totalPages)].map((item, index) => {
-        return (
-          <Link to="/" onClick={() => setPage(item.index + 1)}>
-            {item.index + 1}
+        <div className={"arrows " + (page === newArr.length && "linkDisabled")}>
+          <Link to="/" onClick={() => setPage(page + 1)}>
+            &raquo;
           </Link>
-        );
-      })} */}
+        </div>
+      </div>
     </div>
   );
 };
