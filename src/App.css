@@ -425,6 +425,10 @@ header {
   /* min-height: 300px; */
 }
 
+.itemListAndNav > div {
+  width: 100%;
+}
+
 .itemList {
   width: 100%;
   margin: 50px auto;

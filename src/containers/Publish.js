@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
+import Dropzone from "react-dropzone";
 
 const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
   const [offerTitle, setOfferTitle] = useState("");
@@ -16,6 +17,7 @@ const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
   const publishOffer = async (event) => {
     event.preventDefault();
     try {
+      console.log(offerPic);
       const formData = new FormData();
       formData.append("title", offerTitle);
       formData.append("description", offerDesc);
@@ -107,10 +109,26 @@ const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
                 <input
                   type="file"
                   onChange={(event) => {
+                    // console.log(event.target.files[0]);
                     setOfferPic(event.target.files[0]);
                   }}
-                  required
                 />
+
+                <Dropzone
+                  onDrop={(acceptedFiles) => setOfferPic(acceptedFiles[0])}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <section>
+                      <div {...getRootProps()}>
+                        <input {...getInputProps()} />
+                        <p>
+                          Drag 'n' drop some files here, or click to select
+                          files
+                        </p>
+                      </div>
+                    </section>
+                  )}
+                </Dropzone>
                 <button type="submit">Valider</button>
               </form>
             </div>

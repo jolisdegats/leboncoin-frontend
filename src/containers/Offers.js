@@ -27,16 +27,17 @@ numeral.register("locale", "fr", {
 // switch between locales
 numeral.locale("fr");
 
-const Offers = ({ setSearchVisible, apiUrl, filter, setFilter }) => {
+const Offers = ({ setSearchVisible, apiUrl, filter }) => {
   let myData = [];
   let newArr = [];
   const [totalPages, setTotalPages] = useState(1);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
-  let urlToRequest = `${apiUrl}/offer/with-count${filter}`;
-  const limit = 5;
-  const skip = (page - 1) * limit;
+  const limit = Number(5);
+  let urlToRequest = `${apiUrl}/offer/with-count?page=${page}&limit=${limit}${filter}`;
+
+  console.log(urlToRequest);
 
   const fetchData = async () => {
     const response = await axios.get(urlToRequest);
@@ -52,7 +53,7 @@ const Offers = ({ setSearchVisible, apiUrl, filter, setFilter }) => {
     setSearchVisible("enabled");
     fetchData();
     // eslint-disable-next-line
-  }, [filter]);
+  }, [filter, page]);
 
   for (let i = 0; i < totalPages; i++) {
     newArr.push(i);
@@ -67,7 +68,7 @@ const Offers = ({ setSearchVisible, apiUrl, filter, setFilter }) => {
       ) : (
         <div>
           <div className="itemList">
-            {data.slice(skip, skip + limit).map((item, id) => {
+            {data.map((item, id) => {
               return (
                 <Link
                   to={`/offer/${item._id}`}

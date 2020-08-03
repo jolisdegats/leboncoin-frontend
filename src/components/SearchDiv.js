@@ -29,11 +29,11 @@ const SearchDiv = ({
       if (priceMax !== "") {
         arrFilter.push(`priceMax=${priceMax}`);
       }
+      // if (arrFilter.length > 0) {
+      //   arrFilter.splice(0, 0, "&");
+      // }
       if (arrFilter.length > 0) {
-        arrFilter.splice(0, 0, "?");
-      }
-      if (arrFilter.length > 2) {
-        for (let i = 2; i < arrFilter.length; i++) {
+        for (let i = 0; i < arrFilter.length; i++) {
           if (i % 2 === 0) {
             arrFilter.splice(i, 0, "&");
           }
