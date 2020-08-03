@@ -37,8 +37,6 @@ const Offers = ({ setSearchVisible, apiUrl, filter, page, setPage }) => {
   const limit = Number(5);
   let urlToRequest = `${apiUrl}/offer/with-count?page=${page}&limit=${limit}${filter}`;
 
-  console.log(urlToRequest);
-
   const fetchData = async () => {
     const response = await axios.get(urlToRequest);
 
