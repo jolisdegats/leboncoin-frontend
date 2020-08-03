@@ -27,13 +27,13 @@ numeral.register("locale", "fr", {
 // switch between locales
 numeral.locale("fr");
 
-const Offers = ({ setSearchVisible, apiUrl, filter }) => {
+const Offers = ({ setSearchVisible, apiUrl, filter, page, setPage }) => {
   let myData = [];
   let newArr = [];
   const [totalPages, setTotalPages] = useState(1);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(1);
+
   const limit = Number(5);
   let urlToRequest = `${apiUrl}/offer/with-count?page=${page}&limit=${limit}${filter}`;
 
@@ -52,6 +52,7 @@ const Offers = ({ setSearchVisible, apiUrl, filter }) => {
   useEffect(() => {
     setSearchVisible("enabled");
     fetchData();
+
     // eslint-disable-next-line
   }, [filter, page]);
 
@@ -95,7 +96,7 @@ const Offers = ({ setSearchVisible, apiUrl, filter }) => {
             })}
           </div>
 
-          <div className="pagination">
+          <nav className="pagination">
             <div className={"arrows " + (page === 1 && "linkDisabled")}>
               <Link to="/" onClick={() => setPage(page - 1)}>
                 &laquo;
@@ -117,7 +118,7 @@ const Offers = ({ setSearchVisible, apiUrl, filter }) => {
                 &raquo;
               </Link>
             </div>
-          </div>
+          </nav>
         </div>
       )}
     </div>

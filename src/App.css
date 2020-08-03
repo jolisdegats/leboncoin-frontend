@@ -265,6 +265,17 @@ header {
   margin-right: 20px;
 }
 
+.dropzoneStyle {
+  background: #ffffff;
+  border: 1px solid #d9e0eb;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
 /* LOGIN MODAL */
 
 .loginModal {
@@ -481,7 +492,6 @@ header {
   margin: 30px auto;
   font-weight: bold;
   align-items: center;
-
   align-self: flex-end;
   justify-self: flex-end;
 }
@@ -492,7 +502,8 @@ header {
   padding: 5px 8px;
 }
 
-.pagination a:hover {
+.pagination a:hover,
+.pagination a:focus {
   background: #f56b2a;
   border-radius: 3px;
   color: white;

@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 const SearchDiv = ({
   searchVisible,
@@ -11,7 +12,9 @@ const SearchDiv = ({
   setPriceMax,
   sort,
   setSort,
+  setPage,
 }) => {
+  let history = useHistory();
   const arrFilter = [];
 
   const filterOffers = (event) => {
@@ -41,6 +44,8 @@ const SearchDiv = ({
       }
     }
     setFilter(arrFilter.join(""));
+    setPage(1);
+    history.push("/");
   };
 
   return (

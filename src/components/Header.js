@@ -16,6 +16,7 @@ const Header = ({
   user,
   setUser,
   setFilter,
+  setPage,
 }) => {
   let [keywords, setKeywords] = useState("");
   let [sort, setSort] = useState("");
@@ -24,12 +25,13 @@ const Header = ({
 
   let history = useHistory();
 
-  const resetFilters = () => {
+  const resetFiltersAndPage = () => {
     setKeywords("");
     setSort("");
     setPriceMin("");
     setPriceMax("");
     setFilter("");
+    setPage(1);
   };
 
   return (
@@ -40,14 +42,18 @@ const Header = ({
             <div>
               <Link
                 to="/"
-                onClick={() => setSearchVisible("enabled") & resetFilters()}
+                onClick={() =>
+                  setSearchVisible("enabled") & resetFiltersAndPage()
+                }
               >
                 <img className="logo" src={logo} alt="" />
               </Link>
               {user === null ? (
                 <div
                   className="publishOfferButton"
-                  onClick={() => setLoginVisible("enabled") & resetFilters()}
+                  onClick={() =>
+                    setLoginVisible("enabled") & resetFiltersAndPage()
+                  }
                 >
                   <img src={publishOffer} alt="" />
                   <span> Deposer une annonce</span>
@@ -55,7 +61,9 @@ const Header = ({
               ) : (
                 <Link
                   to="/publish"
-                  onClick={() => setSearchVisible("disabled") & resetFilters()}
+                  onClick={() =>
+                    setSearchVisible("disabled") & resetFiltersAndPage()
+                  }
                 >
                   <div className="publishOfferButton">
                     <img src={publishOffer} alt="" />
@@ -67,8 +75,8 @@ const Header = ({
                 className="searchOfferButton"
                 onClick={() =>
                   searchVisible === "disabled"
-                    ? setSearchVisible("enabled") & resetFilters()
-                    : setSearchVisible("disabled") & resetFilters()
+                    ? setSearchVisible("enabled")
+                    : setSearchVisible("disabled")
                 }
               >
                 <img src={searchOffer} alt="" />
@@ -80,7 +88,7 @@ const Header = ({
                 id="loginButton"
                 className="loginButton"
                 onClick={() =>
-                  resetFilters() & (loginVisible === "disabled")
+                  resetFiltersAndPage() & (loginVisible === "disabled")
                     ? setLoginVisible("enabled")
                     : setLoginVisible("disabled")
                 }
@@ -93,7 +101,7 @@ const Header = ({
                 id="loginButton"
                 className="loginButton"
                 onClick={() =>
-                  resetFilters() &
+                  resetFiltersAndPage() &
                   setUser(null) &
                   Cookies.remove("token") &
                   history.push("/")
@@ -117,6 +125,7 @@ const Header = ({
         setPriceMax={setPriceMax}
         priceMin={priceMin}
         setPriceMin={setPriceMin}
+        setPage={setPage}
       ></SearchDiv>
     </div>
   );

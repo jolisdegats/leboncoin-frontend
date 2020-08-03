@@ -27,6 +27,9 @@ function App() {
   // Filtres de recherche
   const [filter, setFilter] = useState("");
 
+  // Pour reset la pagination
+  const [page, setPage] = useState(1);
+
   // Adresse du backend
   const apiUrl = "https://leboncoin-api.herokuapp.com";
   // Mon Backend
@@ -54,6 +57,7 @@ function App() {
             user={user}
             setUser={setUser}
             setFilter={setFilter}
+            setPage={setPage}
           ></Header>
 
           <Switch>
@@ -81,6 +85,8 @@ function App() {
                 setSearchVisible={setSearchVisible}
                 apiUrl={apiUrl}
                 filter={filter}
+                page={page}
+                setPage={setPage}
               ></Offers>
             </Route>
             <Route path="*">
