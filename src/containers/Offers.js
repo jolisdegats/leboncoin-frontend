@@ -110,11 +110,7 @@ const Offers = ({ setSearchVisible, apiUrl, filter, setFilter }) => {
               );
             })}
             <div
-              className={
-                "arrows " +
-                (page === newArr.length ||
-                  (newArr.length === 0 && "linkDisabled"))
-              }
+              className={"arrows " + (page === newArr.length && "linkDisabled")}
             >
               <Link to="/" onClick={() => setPage(page + 1)}>
                 &raquo;

@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 
-const SearchDiv = ({ searchVisible, setFilter }) => {
-  let [keywords, setKeywords] = useState("");
-  let [priceMin, setPriceMin] = useState("");
-  let [priceMax, setPriceMax] = useState("");
-  let [sort, setSort] = useState("");
+const SearchDiv = ({
+  searchVisible,
+  setFilter,
+  keywords,
+  setKeywords,
+  priceMin,
+  setPriceMin,
+  priceMax,
+  setPriceMax,
+  sort,
+  setSort,
+}) => {
   const arrFilter = [];
 
   const filterOffers = (event) => {
