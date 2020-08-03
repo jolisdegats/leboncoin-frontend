@@ -15,6 +15,7 @@ const Header = ({
   setLoginVisible,
   user,
   setUser,
+  setFilter,
 }) => {
   let history = useHistory();
 
@@ -86,7 +87,10 @@ const Header = ({
           </div>
         </div>
       </header>
-      <SearchDiv searchVisible={searchVisible}></SearchDiv>
+      <SearchDiv
+        searchVisible={searchVisible}
+        setFilter={setFilter}
+      ></SearchDiv>
     </div>
   );
 };

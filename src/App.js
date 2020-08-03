@@ -24,6 +24,9 @@ function App() {
   // Permet de récupérer les codes de response (200, 40x) et de masquer/afficher des éléments
   const [loggedIn, setLoggedIn] = useState(0);
 
+  // Filtres de recherche
+  const [filter, setFilter] = useState("");
+
   // Adresse du backend
   // const apiUrl = "https://leboncoin-api.herokuapp.com";
   // Mon Backend
@@ -48,6 +51,7 @@ function App() {
             setLoginVisible={setLoginVisible}
             user={user}
             setUser={setUser}
+            setFilter={setFilter}
           ></Header>
 
           <Switch>
@@ -74,6 +78,7 @@ function App() {
               <Offers
                 setSearchVisible={setSearchVisible}
                 apiUrl={apiUrl}
+                filter={filter}
               ></Offers>
             </Route>
             <Route path="*">
