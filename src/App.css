@@ -41,6 +41,10 @@ h3 {
   display: none !important;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* HEADER */
 header {
   width: 100%;
@@ -230,6 +234,37 @@ header {
   width: 20%;
 }
 
+/* PUBLISH NEW OFFER */
+.offerPublishDiv {
+  max-width: 400px;
+  margin: auto;
+}
+
+.offerPublishDiv input[type="file" i] {
+  border: none;
+  padding: 0px;
+  border-radius: 0px;
+}
+
+.textareaInput {
+  background: #ffffff;
+  border: 1px solid #d9e0eb;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  padding: 20px;
+  height: 100px;
+}
+
+.priceInputDiv {
+  display: flex;
+}
+
+.priceInput {
+  max-width: 40%;
+  margin-right: 20px;
+}
+
 /* LOGIN MODAL */
 
 .loginModal {
@@ -336,14 +371,14 @@ header {
 }
 
 /* ACCOUNT SIGN UP */
-.accountCreationDiv {
+.whiteFloatingContainer {
   display: flex;
   background-color: white;
   padding: 30px;
   margin: 50px 0;
 }
 
-.accountCreationDiv > div {
+.whiteFloatingContainer > div {
   flex: 1;
   padding: 20px;
 }
@@ -362,7 +397,7 @@ header {
   margin-top: 10px;
 }
 
-.accountCreationDiv label {
+.whiteFloatingContainer label {
   padding: 10px 0;
   font-weight: bold;
 }
@@ -375,7 +410,7 @@ header {
   margin-right: 10px;
 }
 
-.accountCreated {
+.formSubmitted {
   text-align: center;
   flex: 1;
 }

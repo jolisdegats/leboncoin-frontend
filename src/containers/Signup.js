@@ -74,14 +74,14 @@ const Signup = ({
     <div className="container">
       <div>
         {loggedIn === 200 ? (
-          <div className="accountCreationDiv">
-            <div className="accountCreated">
+          <div className="whiteFloatingContainer">
+            <div className="formSubmitted">
               <p>Compte créé avec succès</p>
               <p>Connexion en cours...</p>
             </div>
           </div>
         ) : (
-          <div className="accountCreationDiv">
+          <div className="whiteFloatingContainer">
             <div>
               <h2>Pourquoi créer un compte</h2>
               <div className="whyAccount">

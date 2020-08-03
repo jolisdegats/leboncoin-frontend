@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../img/logoLeBonCoin.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import loginIcon from "../img/loginIcon.svg";
 import publishOffer from "../img/publishOffer.svg";
 import searchOffer from "../img/searchOffer.svg";
@@ -16,6 +16,8 @@ const Header = ({
   user,
   setUser,
 }) => {
+  let history = useHistory();
+
   return (
     <div>
       <header>
@@ -25,10 +27,25 @@ const Header = ({
               <Link to="/" onClick={() => setSearchVisible("enabled")}>
                 <img className="logo" src={logo} alt="" />
               </Link>
-              <button className="publishOfferButton">
-                <img src={publishOffer} alt="" />
-                <span> Deposer une annonce</span>
-              </button>
+              {user === null ? (
+                <div
+                  className="publishOfferButton"
+                  onClick={() => setLoginVisible("enabled")}
+                >
+                  <img src={publishOffer} alt="" />
+                  <span> Deposer une annonce</span>
+                </div>
+              ) : (
+                <Link
+                  to="/publish"
+                  onClick={() => setSearchVisible("disabled")}
+                >
+                  <div className="publishOfferButton">
+                    <img src={publishOffer} alt="" />
+                    <span> Deposer une annonce</span>
+                  </div>
+                </Link>
+              )}
               <button
                 className="searchOfferButton"
                 onClick={() =>
@@ -58,7 +75,9 @@ const Header = ({
               <button
                 id="loginButton"
                 className="loginButton"
-                onClick={() => setUser(null) & Cookies.remove("token")}
+                onClick={() =>
+                  setUser(null) & Cookies.remove("token") & history.push("/")
+                }
               >
                 <img src={loginIcon} alt="" />
                 <span>Se déconnecter</span>

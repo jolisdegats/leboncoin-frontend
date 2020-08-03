@@ -9,14 +9,22 @@ import NoMatch from "./containers/NoMatch";
 import Login from "./components/Login";
 import Signup from "./containers/Signup";
 import Cookies from "js-cookie";
+import Publish from "./containers/Publish";
 
 function App() {
   const token = Cookies.get("token");
   const [user, setUser] = useState(token || null);
-  const [loggedIn, setLoggedIn] = useState(0);
+
+  // Active/désactive la modal de connexion
   const [loginVisible, setLoginVisible] = useState("disabled");
+
+  // Active/désactive la barre de recherche. Par défaut, active sur la homepage uniquement
   const [searchVisible, setSearchVisible] = useState("disabled");
 
+  // Permet de récupérer les codes de response (200, 40x) et de masquer/afficher des éléments
+  const [loggedIn, setLoggedIn] = useState(0);
+
+  // Adresse du backend
   // const apiUrl = "https://leboncoin-api.herokuapp.com";
   // Mon Backend
   const apiUrl = "https://leboncoin-api-js.herokuapp.com";
@@ -51,6 +59,13 @@ function App() {
                 loggedIn={loggedIn}
                 setLoggedIn={setLoggedIn}
               ></Signup>
+            </Route>
+            <Route path="/publish">
+              <Publish
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
+                apiUrl={apiUrl}
+              ></Publish>
             </Route>
             <Route path="/offer/:id">
               <Offer apiUrl={apiUrl}></Offer>
