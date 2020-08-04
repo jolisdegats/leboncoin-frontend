@@ -26,6 +26,7 @@ const Payment = ({ setLoginVisible, apiUrl }) => {
       },
       title: "this is a title",
       price: 14,
+      _id: "5f0863c0ae55020017b567b5",
     };
   } else {
     myData = history.location.productData;
