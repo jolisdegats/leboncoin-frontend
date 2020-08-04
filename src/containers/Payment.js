@@ -52,7 +52,7 @@ const Payment = ({ setLoginVisible, apiUrl }) => {
               <div className="payment"></div>
             </div>
             <Elements stripe={stripePromise}>
-              <CheckoutForm apiUrl={apiUrl} myData={myData} />
+              <CheckoutForm apiUrl={apiUrl} myData={myData} token={token} />
             </Elements>
           </div>
         </div>
