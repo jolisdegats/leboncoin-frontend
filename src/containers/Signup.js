@@ -34,7 +34,7 @@ const Signup = ({
         });
         if (response.data.token) {
           setLoggedIn(response.status);
-          Cookies.set("token", response.data.token, { expires: 7 });
+          Cookies.set("token", response.data.token, { expires: 7 }, Secure);
           setUser({ token: response.data.token });
           setErrorMessage("");
           setEmail("");
