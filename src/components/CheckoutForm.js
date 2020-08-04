@@ -32,6 +32,9 @@ const CheckoutForm = ({ apiUrl, myData, token }) => {
     );
     if (response.data.status === "succeeded") {
       setCompleted(true);
+      setTimeout(() => {
+        this.props.history.push("/");
+      }, 2000);
     }
   };
   return (
@@ -44,7 +47,9 @@ const CheckoutForm = ({ apiUrl, myData, token }) => {
           </div>
         </form>
       ) : (
-        <p>Commande validée</p>
+        <div className="okBuy">
+          <p>Commande validée</p>
+        </div>
       )}
     </>
   );
