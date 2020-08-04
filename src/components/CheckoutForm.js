@@ -49,6 +49,7 @@ const CheckoutForm = ({ apiUrl, myData, token }) => {
       ) : (
         <div className="okBuy">
           <p>Commande validée</p>
+          <p>Redirection en cours...</p>
         </div>
       )}
     </>
