@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Loader from "../components/Loader";
 import axios from "axios";
 
 import Cookies from "js-cookie";
@@ -76,11 +77,12 @@ const Signup = ({ apiUrl, setSearchVisible, setUser }) => {
             <div className="formSubmitted">
               <p>Compte créé avec succès</p>
               <p>Connexion en cours...</p>
+              <Loader></Loader>
             </div>
           </div>
         ) : (
           <div className="whiteFloatingContainer">
-            <div>
+            <div className="colWhy">
               <h2>Pourquoi créer un compte</h2>
               <div className="whyAccount">
                 <img src="" alt="" />
@@ -108,7 +110,7 @@ const Signup = ({ apiUrl, setSearchVisible, setUser }) => {
                 </p>
               </div>
             </div>
-            <div>
+            <div className="colCreation">
               <p className="loginTitle">Créer un compte</p>
               <form className="loginForm" action="" onSubmit={accountCreation}>
                 <p className="errorMessage">{errorMessage}</p>

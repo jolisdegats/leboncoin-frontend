@@ -44,7 +44,6 @@ const Payment = ({ setLoginVisible, apiUrl }) => {
                 <h3>{title}</h3>
                 <p className="itemPrice">{numeral(price).format("0,0 $")}</p>
               </div>
-              <div className="payment"></div>
             </div>
             <Elements stripe={stripePromise}>
               <CheckoutForm apiUrl={apiUrl} myData={myData} token={token} />

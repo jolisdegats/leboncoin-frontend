@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
+import Loader from "../components/Loader";
 import Dropzone from "react-dropzone";
 
 const Publish = ({ apiUrl }) => {
@@ -62,6 +63,7 @@ const Publish = ({ apiUrl }) => {
             <div className="formSubmitted">
               <h2 className="loginTitle">Déposer une annonce</h2>
               <p>Publication en cours...</p>
+              <Loader></Loader>
             </div>
           </div>
         ) : (

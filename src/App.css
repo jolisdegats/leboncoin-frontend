@@ -368,6 +368,7 @@ header span {
 .offerPublishDiv {
   max-width: 400px;
   margin: auto;
+  padding: 30px;
 }
 
 .offerPublishDiv input[type="file" i] {
@@ -500,7 +501,7 @@ header span {
   flex-wrap: wrap-reverse;
 }
 
-#signUp .whiteFloatingContainer > div:first-child {
+#signUp .colWhy {
   border-top: solid 1px lightgrey;
 }
 
@@ -511,7 +512,8 @@ header span {
   border-radius: 5px;
 }
 
-.whiteFloatingContainer > div {
+.whiteFloatingContainer .colWhy,
+.whiteFloatingContainer .colCreation {
   flex: 1 1 100%;
   padding: 40px;
 }
@@ -546,7 +548,8 @@ header span {
 
 .formSubmitted {
   text-align: center;
-  flex: 1;
+  flex: 100%;
+  padding: 50px;
 }
 
 /* ITEMS */
@@ -724,6 +727,7 @@ header span {
 .buyProductDiv {
   max-width: 30vw;
   margin: auto;
+  padding: 30px;
 }
 
 .buyProductInfos {
@@ -744,6 +748,30 @@ header span {
   object-fit: cover;
   max-width: 150px;
   margin-right: 20px;
+}
+
+.paymentForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.paymentForm input {
+  border: solid 1px #f0f0f0;
+  border-radius: 5px;
+  padding: 10px;
+  flex: 1;
+  margin: 5px 0;
+  font-family: Roboto;
+  font-size: 1.5rem;
+  outline: none;
+}
+
+.StripeElement {
+  margin: 10px 0;
+  border: solid 1px #f0f0f0;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .validationButton {
@@ -799,11 +827,12 @@ footer a {
     margin-right: 2%;
   }
 
-  #signUp .whiteFloatingContainer > div {
+  #signUp .whiteFloatingContainer .colWhy,
+  #signUp .whiteFloatingContainer .colCreation {
     flex: 0.5;
   }
 
-  #signUp .whiteFloatingContainer > div:first-child {
+  #signUp .whiteFloatingContainer .colWhy {
     border-top: none;
   }
 

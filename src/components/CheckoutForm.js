@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { useHistory } from "react-router-dom";
+import Loader from "../components/Loader";
 import axios from "axios";
 
 const CheckoutForm = ({ apiUrl, myData, token }) => {
@@ -46,7 +47,11 @@ const CheckoutForm = ({ apiUrl, myData, token }) => {
   return (
     <>
       {!completed ? (
-        <form onSubmit={handleSubmit}>
+        <form className="paymentForm" onSubmit={handleSubmit}>
+          <input type="text" placeholder="Nom du destinataire"></input>
+          <input type="text" placeholder="Adresse de livraison"></input>
+          <input type="text" placeholder="Code postal"></input>
+          <input type="text" placeholder="Ville"></input>
           <CardElement />
           <div className="validationButton">
             <button className="blueButton" type="submit">
@@ -58,6 +63,7 @@ const CheckoutForm = ({ apiUrl, myData, token }) => {
         <div className="okBuy">
           <p>Commande validée</p>
           <p>Redirection en cours...</p>
+          <Loader></Loader>
         </div>
       )}
     </>
