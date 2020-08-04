@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import Loader from "../components/Loader";
 import { useHistory } from "react-router-dom";
 
 const Login = ({ loginVisible, setLoginVisible, apiUrl, setUser }) => {
@@ -58,6 +59,7 @@ const Login = ({ loginVisible, setLoginVisible, apiUrl, setUser }) => {
           <div className="loginFormDiv">
             <p>Identification réussie</p>
             <p>Connexion en cours...</p>
+            <Loader></Loader>
           </div>
         ) : (
           <form className="loginForm" action="" onSubmit={loginUser}>
