@@ -4,12 +4,13 @@ import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 import Dropzone from "react-dropzone";
 
-const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
+const Publish = ({ apiUrl }) => {
   const [offerTitle, setOfferTitle] = useState("");
   const [offerDesc, setOfferDesc] = useState("");
   const [offerPrice, setOfferPrice] = useState("");
   const [offerPic, setOfferPic] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [publishedStatus, setPublishedStatus] = useState(0);
   let history = useHistory();
 
   const token = Cookies.get("token");
@@ -28,7 +29,7 @@ const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-      setLoggedIn(response.status);
+      setPublishedStatus(response.status);
       setErrorMessage("");
       setOfferTitle("");
       setOfferDesc("");
@@ -36,7 +37,7 @@ const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
       setOfferPic({});
       setTimeout(() => {
         history.push("/");
-        setLoggedIn(0);
+        setPublishedStatus(0);
       }, 2000);
     } catch (err) {
       if (err.response.data === "Title is too long (50 characters max)") {
@@ -56,7 +57,7 @@ const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
   return (
     <div className="container">
       <div>
-        {loggedIn === 200 ? (
+        {publishedStatus === 200 ? (
           <div className="whiteFloatingContainer">
             <div className="formSubmitted">
               <h2 className="loginTitle">Déposer une annonce</h2>
@@ -118,22 +119,22 @@ const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
                 >
                   {({ getRootProps, getInputProps }) => (
                     <section>
-                      <div {...getRootProps()}>
+                      <div className="dropzoneStyle" {...getRootProps()}>
                         <input {...getInputProps()} />
-                        <p className="dropzoneStyle">
+                        <div>{offerPic.name}</div>
+                        <p>
                           Drag 'n' drop some files here, or click to select
                           files
                         </p>
-                        <div className="dropzone-previews">
-                          <img src={offerPic.path} alt="" />
-                        </div>
                       </div>
                     </section>
                   )}
                 </Dropzone>
                 {/* {console.log(offerPic)}
                 <img src={offerPic.path} alt="" /> */}
-                <button type="submit">Valider</button>
+                <button className="orangeButton" type="submit">
+                  Valider
+                </button>
               </form>
             </div>
           </div>

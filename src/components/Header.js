@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../img/logoLeBonCoin.png";
 import { Link, useHistory } from "react-router-dom";
 import loginIcon from "../img/loginIcon.svg";
+import logoutIcon from "../img/logoutIcon.svg";
 import publishOffer from "../img/publishOffer.svg";
 import searchOffer from "../img/searchOffer.svg";
 import Cookies from "js-cookie";
@@ -48,14 +49,16 @@ const Header = ({
                 <img className="logo" src={logo} alt="" />
               </Link>
               {user === null ? (
-                <div
-                  className="publishOfferButton"
-                  onClick={() =>
-                    setLoginVisible("enabled") & resetFiltersAndPage()
-                  }
-                >
-                  <img src={publishOffer} alt="" />
-                  <span> Deposer une annonce</span>
+                <div>
+                  <button
+                    className="orangeButton"
+                    onClick={() =>
+                      setLoginVisible("enabled") & resetFiltersAndPage()
+                    }
+                  >
+                    <img src={publishOffer} alt="" />
+                    <span> Deposer une annonce</span>
+                  </button>
                 </div>
               ) : (
                 <Link
@@ -64,9 +67,11 @@ const Header = ({
                     setSearchVisible("disabled") & resetFiltersAndPage()
                   }
                 >
-                  <div className="publishOfferButton">
-                    <img src={publishOffer} alt="" />
-                    <span> Deposer une annonce</span>
+                  <div>
+                    <button className="orangeButton">
+                      <img src={publishOffer} alt="" />
+                      <span> Deposer une annonce</span>
+                    </button>
                   </div>
                 </Link>
               )}
@@ -109,7 +114,7 @@ const Header = ({
                   history.push("/")
                 }
               >
-                <img src={loginIcon} alt="" />
+                <img src={logoutIcon} alt="" />
                 <span>Se déconnecter</span>
               </button>
             )}

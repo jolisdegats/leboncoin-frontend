@@ -13,23 +13,23 @@ const stripePromise = loadStripe(
 const Payment = ({ setLoginVisible, apiUrl }) => {
   const token = Cookies.get("token");
   !token && setLoginVisible("enabled");
+  let pictureUrl = "";
+  let title = "";
+  let price = 0;
 
   let history = useHistory();
   let myData = {};
-
-  // A SUPPRIMER
-  if (history.location.productData === undefined) {
-    myData = {
-      picture: {
-        secure_url:
-          "https://res.cloudinary.com/dqp905mfv/image/upload/v1596534854/xuqvpv3qeqjwsvwob14d.jpg",
-      },
-      title: "this is a title",
-      price: 14,
-      _id: "5f0863c0ae55020017b567b5",
-    };
-  } else {
-    myData = history.location.productData;
+  try {
+    if (history.location.productData === undefined) {
+      history.goBack();
+    } else {
+      myData = history.location.productData;
+      pictureUrl = myData.picture.secure_url;
+      title = myData.title;
+      price = myData.price;
+    }
+  } catch (err) {
+    console.log(err.message);
   }
 
   return (
@@ -39,16 +39,10 @@ const Payment = ({ setLoginVisible, apiUrl }) => {
           <div className="buyProductDiv">
             <h2 className="loginTitle">Acheter</h2>
             <div className="buyProductInfos">
-              <img
-                className="imgPayment"
-                src={myData.picture.secure_url}
-                alt=""
-              />
+              <img className="imgPayment" src={pictureUrl} alt="" />
               <div className="buyProductTitlePrice">
-                <h3>{myData.title}</h3>
-                <p className="itemPrice">
-                  {numeral(myData.price).format("0,0 $")}
-                </p>
+                <h3>{title}</h3>
+                <p className="itemPrice">{numeral(price).format("0,0 $")}</p>
               </div>
               <div className="payment"></div>
             </div>

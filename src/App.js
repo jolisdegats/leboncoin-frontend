@@ -22,9 +22,6 @@ function App() {
   // Active/désactive la barre de recherche. Par défaut, active sur la homepage uniquement
   const [searchVisible, setSearchVisible] = useState("disabled");
 
-  // Permet de récupérer les codes de response (200, 40x) et de masquer/afficher des éléments
-  const [loggedIn, setLoggedIn] = useState(0);
-
   // Filtres de recherche
   const [filter, setFilter] = useState("");
 
@@ -47,8 +44,6 @@ function App() {
             setLoginVisible={setLoginVisible}
             apiUrl={apiUrl}
             setUser={setUser}
-            loggedIn={loggedIn}
-            setLoggedIn={setLoggedIn}
           ></Login>
           <Header
             searchVisible={searchVisible}
@@ -67,16 +62,10 @@ function App() {
                 apiUrl={apiUrl}
                 setSearchVisible={setSearchVisible}
                 setUser={setUser}
-                loggedIn={loggedIn}
-                setLoggedIn={setLoggedIn}
               ></Signup>
             </Route>
             <Route path="/publish">
-              <Publish
-                loggedIn={loggedIn}
-                setLoggedIn={setLoggedIn}
-                apiUrl={apiUrl}
-              ></Publish>
+              <Publish apiUrl={apiUrl}></Publish>
             </Route>
             <Route path="/offer/:id">
               <Offer apiUrl={apiUrl}> </Offer>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { creationTime } from "../functions/creationTime";
+import Loader from "../components/Loader";
 var numeral = require("numeral");
 
 // load a locale
@@ -59,7 +60,7 @@ const Offers = ({ setSearchVisible, apiUrl, filter, page, setPage }) => {
   }
 
   return isLoading ? (
-    <span>En cours de chargement</span>
+    <Loader></Loader>
   ) : (
     <div className="container itemListAndNav">
       {newArr.length === 0 ? (
@@ -84,7 +85,6 @@ const Offers = ({ setSearchVisible, apiUrl, filter, page, setPage }) => {
                         <p className="itemPrice">
                           {numeral(item.price).format("0,0 $")}
                         </p>
-                        <p></p>
                       </div>
                       <p>{creationTime(item.created)}</p>
                     </div>

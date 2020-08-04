@@ -3,24 +3,18 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const Login = ({
-  loginVisible,
-  setLoginVisible,
-  apiUrl,
-  setUser,
-  loggedIn,
-  setLoggedIn,
-}) => {
+const Login = ({ loginVisible, setLoginVisible, apiUrl, setUser }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loggedInStatus, setLoggedInStatus] = useState(0);
   let history = useHistory();
 
   const loginUser = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post(`${apiUrl}/user/login`, {
-        email: email,
+        email: email.toLowerCase(),
         password: password,
       });
       if (response.data.token) {
@@ -28,14 +22,14 @@ const Login = ({
         Cookies.set("token", response.data.token, { expires: 7 });
         setUser({ token: response.data.token });
 
-        setLoggedIn(response.status);
+        setLoggedInStatus(response.status);
         // RESET DES CHAMPS
         setErrorMessage("");
         setEmail("");
         setPassword("");
         setTimeout(() => {
           setLoginVisible("disabled");
-          setLoggedIn(0);
+          setLoggedInStatus(0);
         }, 2000);
       }
     } catch (error) {
@@ -60,7 +54,7 @@ const Login = ({
 
       <div className="loginFormDiv borderBot">
         <p className="loginTitle">Connexion</p>
-        {loggedIn === 200 ? (
+        {loggedInStatus === 200 ? (
           <div className="loginFormDiv">
             <p>Identification réussie</p>
             <p>Connexion en cours...</p>
@@ -88,15 +82,17 @@ const Login = ({
               required
             />
             <br />
-            <button type="submit">Se connecter</button>
+            <button className="blueButton" type="submit">
+              Se connecter
+            </button>
           </form>
         )}
       </div>
-      {loggedIn !== 200 && (
+      {loggedInStatus !== 200 && (
         <div className="loginFormDiv">
           <label>Vous n'avez pas de compte ?</label>
           <button
-            className="loginNoAccount"
+            className="blueLineButton"
             onClick={() => {
               setLoginVisible("disabled");
               history.push("/signup");

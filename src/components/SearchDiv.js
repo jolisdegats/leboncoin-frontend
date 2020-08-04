@@ -53,6 +53,56 @@ const SearchDiv = ({
       <div className="backWaveTop"></div>
       <div className="backWaveBottom"></div>
       <div className="searchSortDiv">
+        <form className="searchSortDivb" action="" onSubmit={filterOffers}>
+          <div className="keywordsAndPrice">
+            <div className="searchInput">
+              <input
+                type="search"
+                placeholder="Que recherchez-vous ?"
+                value={keywords}
+                results="0"
+                onChange={(event) => setKeywords(event.target.value)}
+              />
+            </div>
+            <div className="priceMinMax">
+              <p>Prix entre </p>
+              <input
+                placeholder="prix min"
+                value={priceMin}
+                onChange={(event) => setPriceMin(event.target.value)}
+              ></input>
+              <p> et </p>
+              <input
+                placeholder="prix max"
+                value={priceMax}
+                onChange={(event) => setPriceMax(event.target.value)}
+              ></input>
+            </div>
+          </div>
+          <div className="sortAndSearch">
+            <div>
+              <button className="blueButton" type="submit">
+                Rechercher
+              </button>
+            </div>
+            <div className="sortSelect">
+              <select
+                name="Tri"
+                id="sort"
+                value={sort}
+                onChange={(event) => setSort(event.target.value)}
+              >
+                <option value="date-desc">Tri : Plus récentes</option>
+                <option value="date-asc">Tri : Plus anciennes</option>
+                <option value="price-asc">Tri : Prix croissant</option>
+                <option value="price-desc">Tri : Prix décroissant</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      {/* <div className="searchSortDiv">
         <form action="" onSubmit={filterOffers}>
           <div className="search">
             <div className="searchInput">
@@ -98,7 +148,7 @@ const SearchDiv = ({
             </div>
           </div>
         </form>
-      </div>
+      </div> */}
     </div>
   );
 };

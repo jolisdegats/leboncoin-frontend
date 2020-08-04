@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { creationTime } from "../functions/creationTime";
 import cartIcon from "../img/cartIcon.svg";
+import Loader from "../components/Loader";
 var numeral = require("numeral");
 
 const Offer = ({ apiUrl, setProductId }) => {
@@ -23,7 +24,7 @@ const Offer = ({ apiUrl, setProductId }) => {
   }, []);
 
   return isLoading ? (
-    <span>En cours de chargement</span>
+    <Loader></Loader>
   ) : (
     <div className="container">
       <div className="product">
@@ -55,7 +56,7 @@ const Offer = ({ apiUrl, setProductId }) => {
             </div>
             <div className="buyButtonDiv">
               <Link to={{ pathname: "/pay", productData: productInfos }}>
-                <button className="buyButton">
+                <button className="orangeButton">
                   <img src={cartIcon} alt="" />
                   <span>Acheter</span>
                 </button>

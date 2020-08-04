@@ -45,6 +45,144 @@ a {
   text-decoration: none;
 }
 
+.orangeButton {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 20px;
+  margin: 4px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f56b2a;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.orangeButton:hover {
+  background: #d35c24;
+}
+
+.blueButton {
+  width: 100%;
+  height: 40px;
+  padding: 8px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #4183d7;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.blueButton:hover {
+  background: #376fb8;
+}
+
+.blueLineButton {
+  width: 100%;
+  height: 40px;
+  padding: 8px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border: solid 1px #4183d7;
+  border-radius: 5px;
+  color: #4183d7;
+  font-weight: bold;
+  font-size: 1.4rem;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.blueButton:hover {
+  background: #376fb8;
+}
+
+.loader {
+  font-size: 10px;
+  margin: 50px auto;
+  text-indent: -9999em;
+  width: 11em;
+  height: 11em;
+  border-radius: 50%;
+  background: #f56b2a;
+  background: -moz-linear-gradient(
+    left,
+    #f56b2a 10%,
+    rgba(245, 107, 42, 0) 42%
+  );
+  background: -webkit-linear-gradient(
+    left,
+    #f56b2a 10%,
+    rgba(245, 107, 42, 0) 42%
+  );
+  background: -o-linear-gradient(left, #f56b2a 10%, rgba(245, 107, 42, 0) 42%);
+  background: -ms-linear-gradient(left, #f56b2a 10%, rgba(245, 107, 42, 0) 42%);
+  background: linear-gradient(to right, #f56b2a 10%, rgba(245, 107, 42, 0) 42%);
+  position: relative;
+  -webkit-animation: load3 1.4s infinite linear;
+  animation: load3 1.4s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.loader:before {
+  width: 50%;
+  height: 50%;
+  background: #f56b2a;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+}
+.loader:after {
+  background: #ffffff;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: "";
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
 /* HEADER */
 header {
   width: 100%;
@@ -57,35 +195,17 @@ header {
 .headerContent > div {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .logo {
-  max-height: 40px;
+  width: 25vw;
+  max-width: 180px;
   margin-right: 40px;
 }
 
-.publishOfferButton {
-  background: #f56b2a;
-  border-radius: 5px;
-  outline: none;
-  border: none;
-  padding: 8px 20px;
-  font-weight: bold;
-  font-size: 14px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-.publishOfferButton:hover {
-  background: #d35c24;
-}
-
-.publishOfferButton img,
-.searchOfferButton img {
-  margin-right: 10px;
+header button img {
+  height: 20px;
 }
 
 .searchOfferButton {
@@ -93,7 +213,6 @@ header {
   outline: none;
   border: none;
   padding: 10px 20px;
-  font-size: 14px;
   font-weight: bold;
   line-height: 21px;
   color: black;
@@ -118,16 +237,21 @@ header {
   border-radius: 5px;
   outline: none;
   border: none;
-  font-size: 16px;
   font-weight: bold;
   line-height: 21px;
   color: black;
   cursor: pointer;
+  height: 50px;
+}
+
+header span {
+  display: none;
+  font-size: 1.4rem;
 }
 
 /* SEARCH & SORT BLOCK */
 .backWaveTop {
-  height: 120px;
+  height: 110px;
   background: #ff6e14;
   position: absolute;
   width: 100%;
@@ -149,32 +273,35 @@ header {
   background: #ffffff;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  width: 60vw;
+  max-width: 800px;
   padding: 30px 100px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   margin: 60px auto 70px auto;
 }
 
-.sort,
-.search {
-  flex: 0 0 100%;
+.searchSortDivb {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sortAndSearch,
+.keywordsAndPrice {
+  flex: 0 0 50%;
   margin: 15px;
-  max-height: 30px;
   box-sizing: border-box;
+}
+
+.sortAndSearch {
+  flex-direction: column-reverse;
+  display: flex;
 }
 
 .searchButton,
 .searchInput,
 .sortSelect,
 .priceMinMax {
-  flex: 1;
+  flex: 0.5;
 }
 
 .searchInput,
@@ -199,6 +326,7 @@ header {
   color: #8191a0;
   height: 30px;
   outline: none;
+  border-radius: 5px;
 }
 
 .searchInput input {
@@ -207,18 +335,15 @@ header {
   align-items: center;
   padding-left: 10px;
   background: #f4f6f7;
+  margin-bottom: 20px;
 }
 
-.searchButton button,
-.validationButton button {
-  height: 40px;
-  background: #4183d7;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  color: white;
-  width: 300px;
-  border: none;
-  cursor: pointer;
+.sortSelect select {
+  margin-bottom: 20px;
+}
+
+.searchSortDivb button {
+  max-width: 300px;
 }
 
 .searchButton button:hover,
@@ -275,10 +400,15 @@ header {
   border: 1px solid #d9e0eb;
   box-sizing: border-box;
   border-radius: 5px;
-  outline: none;
-  padding: 20px;
+  padding: 10px 20px;
   text-align: center;
   cursor: pointer;
+  outline: none;
+  margin: 10px 0px 20px 0px;
+}
+
+.dropzoneStyle > div {
+  font-weight: bold;
 }
 
 /* LOGIN MODAL */
@@ -298,8 +428,7 @@ header {
 }
 
 .loginFormDiv {
-  width: 30vw;
-  max-width: 400px;
+  width: 60%;
   margin: auto;
   background-color: white;
   display: flex;
@@ -316,8 +445,8 @@ header {
 
 .closeButton {
   position: absolute;
-  right: 50px;
-  top: 30px;
+  right: 2%;
+  top: 1%;
   background: none;
   color: white;
   font-size: 30px;
@@ -357,29 +486,8 @@ header {
   padding: 0 20px;
 }
 
-.loginForm button {
-  background: #4183d7;
-  border-radius: 5px;
-  height: 44px;
-  color: white;
-  outline: none;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
+.loginModal button {
   margin: 10px 0;
-}
-
-.loginNoAccount {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #4183d7;
-  box-sizing: border-box;
-  border-radius: 5px;
-  height: 44px;
-  color: #4183d7;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 10px 0 20px 0;
 }
 
 .errorMessage {
@@ -387,16 +495,25 @@ header {
 }
 
 /* ACCOUNT SIGN UP */
+
+#signUp .whiteFloatingContainer {
+  flex-wrap: wrap-reverse;
+}
+
+#signUp .whiteFloatingContainer > div:first-child {
+  border-top: solid 1px lightgrey;
+}
+
 .whiteFloatingContainer {
   display: flex;
   background-color: white;
-  padding: 30px;
   margin: 50px 0;
+  border-radius: 5px;
 }
 
 .whiteFloatingContainer > div {
-  flex: 1;
-  padding: 20px;
+  flex: 1 1 100%;
+  padding: 40px;
 }
 
 .passwords {
@@ -420,6 +537,7 @@ header {
 
 .cgv {
   display: flex;
+  margin: 10px 0;
 }
 
 .cgv input {
@@ -447,7 +565,7 @@ header {
 
 .itemList {
   width: 100%;
-  margin: 50px auto;
+  margin: 0px auto 50px auto;
 }
 
 .itemList a {
@@ -457,22 +575,22 @@ header {
 
 .item {
   display: flex;
-  height: 200px;
-  margin: 20px 0;
+  height: 50vw;
+  margin: 30px 0;
   background: #ffffff;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
 .itemPicture {
-  flex: 0 0 25%;
+  flex: 0 0 35%;
   background-color: #cad1d9;
 }
 
 .itemPicture img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .itemInfos {
@@ -480,7 +598,7 @@ header {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  margin-left: 30px;
+  margin-left: 10px;
   padding: 20px;
 }
 
@@ -508,7 +626,7 @@ header {
 }
 
 .pagination a:hover,
-.pagination a:focus {
+.pageNumber a:focus {
   background: #f56b2a;
   border-radius: 3px;
   color: white;
@@ -529,12 +647,13 @@ header {
 
 .product {
   display: flex;
+  flex-wrap: wrap;
   padding: 30px 0 80px 0;
 }
 
 .colLeft {
-  flex: 0 0 73%;
-  margin-right: 2%;
+  flex: 1 0 100%;
+  margin-bottom: 2%;
 }
 
 .productInfos img {
@@ -572,7 +691,7 @@ header {
 }
 
 .colRight {
-  flex: 0 0 25%;
+  flex: 1 0 25%;
 }
 
 .vendor {
@@ -598,25 +717,6 @@ header {
 
 .buyButtonDiv {
   padding: 20px;
-}
-
-.buyButton {
-  cursor: pointer;
-  outline: none;
-  border: none;
-  width: 100%;
-  padding: 10px;
-  color: white;
-  background: #f56b2a;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-}
-
-.buyButton img {
-  margin-right: 10px;
 }
 
 /* PAYMENT PAGE */
@@ -671,4 +771,61 @@ footer a {
   text-decoration: none;
   font-weight: bold;
   color: white;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  /* Rules */
+  .item {
+    max-height: 200px;
+  }
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  /* Rules */
+  .searchSortDivb {
+    flex-wrap: nowrap;
+  }
+
+  .itemPicture img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .colLeft {
+    flex: 1 0 73%;
+    margin-bottom: 0px;
+    margin-right: 2%;
+  }
+
+  #signUp .whiteFloatingContainer > div {
+    flex: 0.5;
+  }
+
+  #signUp .whiteFloatingContainer > div:first-child {
+    border-top: none;
+  }
+
+  .loginFormDiv {
+    width: 30vw;
+    max-width: 400px;
+  }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  /* Rules */
+  header span {
+    display: unset;
+  }
+  header button img {
+    margin-right: 10px;
+  }
+  .loginButton img {
+    margin: unset;
+  }
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* Rules */
 }

@@ -4,18 +4,13 @@ import axios from "axios";
 
 import Cookies from "js-cookie";
 
-const Signup = ({
-  apiUrl,
-  setSearchVisible,
-  setUser,
-  setLoggedIn,
-  loggedIn,
-}) => {
+const Signup = ({ apiUrl, setSearchVisible, setUser }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [signUpStatus, setSignUpStatus] = useState(0);
   let history = useHistory();
 
   useEffect(() => {
@@ -28,15 +23,15 @@ const Signup = ({
     if (password === confirmPassword) {
       try {
         const response = await axios.post(`${apiUrl}/user/sign_up`, {
-          username: username,
-          email: email,
+          username: username.toLowerCase(),
+          email: email.toLowerCase(),
           password: password,
         });
         if (response.data.token) {
-          setLoggedIn(response.status);
+          setSignUpStatus(response.status);
           Cookies.set("token", response.data.token, {
             expires: 7,
-            SameSite: "None",
+            sameSite: "strict",
           });
           setUser({ token: response.data.token });
           setErrorMessage("");
@@ -46,7 +41,7 @@ const Signup = ({
           setConfirmPassword("");
           setTimeout(() => {
             history.push("/");
-            setLoggedIn(0);
+            setSignUpStatus(0);
           }, 2000);
         }
       } catch (err) {
@@ -74,9 +69,9 @@ const Signup = ({
   };
 
   return (
-    <div className="container">
+    <div className="container" id="signUp">
       <div>
-        {loggedIn === 200 ? (
+        {signUpStatus === 200 ? (
           <div className="whiteFloatingContainer">
             <div className="formSubmitted">
               <p>Compte créé avec succès</p>
@@ -169,7 +164,9 @@ const Signup = ({
                     Conditions Générales d’Utilisation »
                   </label>
                 </div>
-                <button type="submit">Créer mon compte</button>
+                <button className="blueButton" type="submit">
+                  Créer mon compte
+                </button>
               </form>
             </div>
           </div>
