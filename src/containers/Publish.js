@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
-// import Dropzone from "react-dropzone";
+import Dropzone from "react-dropzone";
 
 const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
   const [offerTitle, setOfferTitle] = useState("");
@@ -17,7 +17,6 @@ const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
   const publishOffer = async (event) => {
     event.preventDefault();
     try {
-      console.log(offerPic);
       const formData = new FormData();
       formData.append("title", offerTitle);
       formData.append("description", offerDesc);
@@ -106,15 +105,15 @@ const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
                 </div>
                 <br />
                 <label htmlFor="">Photo *</label>
-                <input
+                {/* <input
                   type="file"
                   onChange={(event) => {
                     // console.log(event.target.files[0]);
-                    setOfferPic(event.target.files[0]);
+                    setOfferPic(event.target.files);
                   }}
-                />
+                /> */}
                 {/* Dropzone tests */}
-                {/* <Dropzone
+                <Dropzone
                   onDrop={(acceptedFiles) => setOfferPic(acceptedFiles[0])}
                 >
                   {({ getRootProps, getInputProps }) => (
@@ -125,11 +124,13 @@ const Publish = ({ loggedIn, setLoggedIn, apiUrl }) => {
                           Drag 'n' drop some files here, or click to select
                           files
                         </p>
-                        <div className="dropzone-previews"></div>
+                        <div className="dropzone-previews">
+                          <img src={offerPic.path} alt="" />
+                        </div>
                       </div>
                     </section>
                   )}
-                </Dropzone> */}
+                </Dropzone>
                 {/* {console.log(offerPic)}
                 <img src={offerPic.path} alt="" /> */}
                 <button type="submit">Valider</button>

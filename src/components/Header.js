@@ -5,7 +5,6 @@ import loginIcon from "../img/loginIcon.svg";
 import publishOffer from "../img/publishOffer.svg";
 import searchOffer from "../img/searchOffer.svg";
 import Cookies from "js-cookie";
-
 import SearchDiv from "./SearchDiv";
 
 const Header = ({
@@ -72,7 +71,10 @@ const Header = ({
                 </Link>
               )}
               <button
-                className="searchOfferButton"
+                className={
+                  "searchOfferButton " +
+                  (searchVisible === "enabled" && "searchFocus")
+                }
                 onClick={() =>
                   searchVisible === "disabled"
                     ? setSearchVisible("enabled")
@@ -88,7 +90,7 @@ const Header = ({
                 id="loginButton"
                 className="loginButton"
                 onClick={() =>
-                  resetFiltersAndPage() & (loginVisible === "disabled")
+                  loginVisible === "disabled"
                     ? setLoginVisible("enabled")
                     : setLoginVisible("disabled")
                 }

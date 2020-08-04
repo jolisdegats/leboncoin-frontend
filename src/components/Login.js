@@ -35,7 +35,6 @@ const Login = ({
         setPassword("");
         setTimeout(() => {
           setLoginVisible("disabled");
-          history.push("/");
           setLoggedIn(0);
         }, 2000);
       }

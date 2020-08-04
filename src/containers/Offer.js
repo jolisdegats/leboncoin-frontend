@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { creationTime } from "../functions/creationTime";
 import cartIcon from "../img/cartIcon.svg";
 var numeral = require("numeral");
 
-const Offer = ({ apiUrl }) => {
+const Offer = ({ apiUrl, setProductId }) => {
   const { id } = useParams();
 
   const [productInfos, setProductInfos] = useState([]);
@@ -54,10 +54,12 @@ const Offer = ({ apiUrl }) => {
               <p className="allVendorProducts">17 annonces en ligne</p>
             </div>
             <div className="buyButtonDiv">
-              <button className="buyButton">
-                <img src={cartIcon} alt="" />
-                <span>Acheter</span>
-              </button>
+              <Link to={{ pathname: "/pay", productData: productInfos }}>
+                <button className="buyButton">
+                  <img src={cartIcon} alt="" />
+                  <span>Acheter</span>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -8,8 +8,9 @@ import Footer from "./components/Footer";
 import NoMatch from "./containers/NoMatch";
 import Login from "./components/Login";
 import Signup from "./containers/Signup";
-import Cookies from "js-cookie";
 import Publish from "./containers/Publish";
+import Payment from "./containers/Payment";
+import Cookies from "js-cookie";
 
 function App() {
   const token = Cookies.get("token");
@@ -31,11 +32,11 @@ function App() {
   const [page, setPage] = useState(1);
 
   // Adresse du backend
-  const apiUrl = "https://leboncoin-api.herokuapp.com";
+  // const apiUrl = "https://leboncoin-api.herokuapp.com";
   // Mon Backend
-  // const apiUrl = "https://leboncoin-api-js.herokuapp.com";
+  const apiUrl = "https://leboncoin-api-js.herokuapp.com";
   // Mon Backend local
-  // const apiUrl = "http://localhost:3001/";
+  // const apiUrl = "http://localhost:3001";
 
   return (
     <div className="App">
@@ -78,7 +79,13 @@ function App() {
               ></Publish>
             </Route>
             <Route path="/offer/:id">
-              <Offer apiUrl={apiUrl}></Offer>
+              <Offer apiUrl={apiUrl}> </Offer>
+            </Route>
+            <Route path="/pay">
+              <Payment
+                setLoginVisible={setLoginVisible}
+                apiUrl={apiUrl}
+              ></Payment>
             </Route>
             <Route exact path="/">
               <Offers

@@ -57,9 +57,10 @@ const SearchDiv = ({
           <div className="search">
             <div className="searchInput">
               <input
-                type="text"
+                type="search"
                 placeholder="Que recherchez-vous ?"
                 value={keywords}
+                results="0"
                 onChange={(event) => setKeywords(event.target.value)}
               />
             </div>
