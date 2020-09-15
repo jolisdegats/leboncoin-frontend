@@ -102,7 +102,12 @@ const Offers = ({ setSearchVisible, apiUrl, filter, page, setPage }) => {
             </div>
             {newArr.map((item, index) => {
               return (
-                <div className="pageNumber" key={index}>
+                <div
+                  className={
+                    page === item + 1 ? "pageNumber numberActive" : "pageNumber"
+                  }
+                  key={index}
+                >
                   <Link to="/" onClick={() => setPage(item + 1)}>
                     {item + 1}
                   </Link>

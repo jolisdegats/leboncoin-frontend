@@ -45,7 +45,16 @@ const Login = ({ loginVisible, setLoginVisible, apiUrl, setUser }) => {
   };
 
   return (
-    <div className={"loginModal " + loginVisible}>
+    <div
+      className={"loginModal " + loginVisible}
+      id="loginModal"
+      onClick={(event) => {
+        var modalExit = document.getElementById("loginModal");
+        if (event.target === modalExit) {
+          setLoginVisible("disabled");
+        }
+      }}
+    >
       <button
         className="closeButton"
         onClick={() => setLoginVisible("disabled")}
@@ -91,7 +100,7 @@ const Login = ({ loginVisible, setLoginVisible, apiUrl, setUser }) => {
         )}
       </div>
       {loggedInStatus !== 200 && (
-        <div className="loginFormDiv">
+        <div className="loginFormDiv createAccount">
           <label>Vous n'avez pas de compte ?</label>
           <button
             className="blueLineButton"

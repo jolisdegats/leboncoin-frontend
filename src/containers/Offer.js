@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { creationTime } from "../functions/creationTime";
+import ModalImage from "react-modal-image";
 import cartIcon from "../img/cartIcon.svg";
 import Loader from "../components/Loader";
+import avatar from "../img/avatar.svg";
 var numeral = require("numeral");
 
-const Offer = ({ apiUrl, setProductId }) => {
+const Offer = ({ apiUrl, setLoginVisible, user }) => {
   const { id } = useParams();
+  const history = useHistory();
 
   const [productInfos, setProductInfos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const handleBuyClick = () => {
+    !user
+      ? setLoginVisible("enabled")
+      : history.push("/pay", { productData: productInfos });
+  };
 
   const fetchData = async () => {
     const response = await axios.get(`${apiUrl}/offer/${id}`);
@@ -20,6 +29,7 @@ const Offer = ({ apiUrl, setProductId }) => {
 
   useEffect(() => {
     fetchData();
+
     // eslint-disable-next-line
   }, []);
 
@@ -30,7 +40,16 @@ const Offer = ({ apiUrl, setProductId }) => {
       <div className="product">
         <div className="colLeft">
           <div className="productInfos">
-            <img src={productInfos.picture.secure_url} alt="" />
+            <div className="productImageThumb">
+              <ModalImage
+                small={productInfos.picture.secure_url}
+                large={productInfos.picture.secure_url}
+                alt={productInfos.title}
+                hideDownload={true}
+                hideZoom={true}
+              />
+            </div>
+            {/* <img src={productInfos.picture.secure_url} alt="" /> */}
             <div className="productDetails">
               <div>
                 <h3>{productInfos.title}</h3>
@@ -50,17 +69,18 @@ const Offer = ({ apiUrl, setProductId }) => {
         </div>
         <div className="colRight">
           <div className="vendor">
-            <div className="vendorDetails">
-              <h2>{productInfos.creator.account.username}</h2>
-              <p className="allVendorProducts">17 annonces en ligne</p>
+            <div className="vendorDetails noselect">
+              <img src={avatar} alt="avatar" />
+              <div>
+                <h2>{productInfos.creator.account.username}</h2>
+                <p className="allVendorProducts">17 annonces en ligne</p>
+              </div>
             </div>
             <div className="buyButtonDiv">
-              <Link to={{ pathname: "/pay", productData: productInfos }}>
-                <button className="orangeButton">
-                  <img src={cartIcon} alt="" />
-                  <span>Acheter</span>
-                </button>
-              </Link>
+              <button className="orangeButton" onClick={() => handleBuyClick()}>
+                <img src={cartIcon} alt="cart-icon" />
+                <span> Acheter</span>
+              </button>
             </div>
           </div>
         </div>

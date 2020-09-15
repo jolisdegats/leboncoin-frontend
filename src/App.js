@@ -68,13 +68,14 @@ function App() {
               <Publish apiUrl={apiUrl}></Publish>
             </Route>
             <Route path="/offer/:id">
-              <Offer apiUrl={apiUrl}> </Offer>
+              <Offer
+                apiUrl={apiUrl}
+                setLoginVisible={setLoginVisible}
+                user={user}
+              ></Offer>
             </Route>
             <Route path="/pay">
-              <Payment
-                setLoginVisible={setLoginVisible}
-                apiUrl={apiUrl}
-              ></Payment>
+              <Payment apiUrl={apiUrl}></Payment>
             </Route>
             <Route exact path="/">
               <Offers
