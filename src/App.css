@@ -111,6 +111,16 @@ a {
   background: #376fb8;
 }
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
 .loader {
   font-size: 10px;
   margin: 50px auto;
@@ -436,12 +446,18 @@ header span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px 60px;
+  padding: 20px 100px;
   margin: 0;
 }
 
 .borderBot {
   border-bottom: 1px solid lightgrey;
+  border-radius: 5px 5px 0 0;
+}
+
+.createAccount {
+  padding-bottom: 50px;
+  border-radius: 0 0 5px 5px;
 }
 
 .closeButton {
@@ -609,6 +625,7 @@ header span {
   font-size: 20px;
   line-height: 23px;
   color: #f56b2a;
+  white-space: nowrap;
 }
 
 .pagination {
@@ -626,6 +643,12 @@ header span {
   text-decoration: none;
   color: #336699;
   padding: 5px 8px;
+}
+
+.numberActive a {
+  background: #f56b2a;
+  border-radius: 3px;
+  color: white;
 }
 
 .pagination a:hover,
@@ -659,13 +682,14 @@ header span {
   margin-bottom: 2%;
 }
 
-.productInfos img {
+.productImageThumb > div > img {
   width: 100%;
   object-fit: cover;
   object-position: center;
-  max-height: 400px;
+  max-height: 400px !important;
   border-radius: 10px;
 }
+
 .productDetails {
   display: flex;
   flex-direction: column;
@@ -694,7 +718,7 @@ header span {
 }
 
 .colRight {
-  flex: 1 0 25%;
+  flex: 1 0 30%;
 }
 
 .vendor {
@@ -706,6 +730,15 @@ header span {
 .vendorDetails {
   padding: 20px;
   border-bottom: solid 1px lightgrey;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.vendorDetails > img {
+  max-height: 60px;
+  padding-right: 20px;
 }
 
 .allVendorProducts {
@@ -713,9 +746,8 @@ header span {
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
-  line-height: 140%;
   color: #4183d7;
-  margin: 10px 0 0 0;
+  margin: 5px 0 0 0;
 }
 
 .buyButtonDiv {
@@ -725,9 +757,15 @@ header span {
 /* PAYMENT PAGE */
 
 .buyProductDiv {
-  max-width: 30vw;
+  width: 80%;
   margin: auto;
   padding: 30px;
+}
+
+.paymentContent {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  box-sizing: border-box;
 }
 
 .buyProductInfos {
@@ -737,23 +775,28 @@ header span {
   background-color: rgb(240, 240, 240);
   padding: 20px;
   border-radius: 5px;
+  height: 100%;
+  align-items: center;
+  flex: 1 1 60%;
+  flex-direction: column;
 }
 
-.buyProductTitlePrice {
-  flex: 1;
+.buyProductInfos h3 {
+  margin-right: 20px;
 }
 
 .imgPayment {
-  flex: 0 0 30%;
+  flex: 0 0 25%;
   object-fit: cover;
-  max-width: 150px;
+  max-height: 100px;
   margin-right: 20px;
 }
 
 .paymentForm {
+  flex: 1 1 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin: 20px 0px 20px 0;
 }
 
 .paymentForm input {
@@ -822,7 +865,7 @@ footer a {
   }
 
   .colLeft {
-    flex: 1 0 73%;
+    flex: 1 0 68%;
     margin-bottom: 0px;
     margin-right: 2%;
   }
@@ -840,6 +883,18 @@ footer a {
     width: 30vw;
     max-width: 400px;
   }
+
+  .paymentForm {
+    margin: 20px 20px 20px 0;
+  }
+
+  .paymentContent {
+    flex-wrap: nowrap;
+  }
+
+  .buyProductInfos {
+    flex-direction: unset;
+  }
 }
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
@@ -847,7 +902,7 @@ footer a {
   header span {
     display: unset;
   }
-  header button img {
+  button img {
     margin-right: 10px;
   }
   .loginButton img {
