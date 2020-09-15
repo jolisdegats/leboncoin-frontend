@@ -18,7 +18,6 @@ const Payment = ({ apiUrl }) => {
   let pictureUrl = "";
   let title = "";
   let price = 0;
-  let id = "";
 
   let history = useHistory();
   let myData = {};
