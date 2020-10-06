@@ -7,7 +7,7 @@
 <br/>
 <h1>Réplique Leboncoin (React/Node)</h1>
 <br/>
-<p> Personnal fullstack project based on LeBonCoin's website. You can find the Frontend code I made <a href="https://github.com/jolisdegats/leboncoin-frontend">here</a> and the Backend <a href="https://github.com/jolisdegats/leboncoin-backend">here</a>.</p>
+<p> Personnal fullstack project based on LeBonCoin's website. You can find the Frontend code I made <a href="https://github.com/jolisdegats/leboncoin-frontend">here</a> and the Backend <a href="https://github.com/jolisdegats/leboncoin-api">here</a>.</p>
 <p>The project is currently hosted on Netlify (frontend) and Heroku (backend). Have a look at the live demo below and feel free to give me some feedback.</p>
 <h3>
 <a href="https://leboncoin-jolisdegats.netlify.app/">Live Demo</a>
